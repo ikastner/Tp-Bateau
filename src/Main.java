@@ -1,5 +1,6 @@
 //package Tp-Bateau;
 import java.lang. *;
+import java.util.Random;
 
 public class Main {
     static class Bateau {
@@ -137,6 +138,21 @@ public class Main {
         );
     }
 
+    public static void afficheBateauPret(Bateau unbateau){
+    System.out.println("Le bateau est maintenant prêt à prendre la mer");
+    }
+
+    public static int chargeEnCoursBateau(Bateau unbateau) {
+    charge = (int) (Math.random() * 100);
+    return charge;}
+
+        public static int trouverNbPassager (Bateau unbateau) {
+            Random random = new Random();
+           nbPassagers = random.nextInt(16);
+            return nbPassagers;
+        }
+
+
 
 
     }
@@ -148,6 +164,7 @@ public class Main {
             super(longueur, largeur, hauteur, tirantEau, propulsion, vitesse, categorie, matiereTransportee, nbPassagers,
                     poidsMax, charge, membreEquipage);
         }
+
     }
 
     static class Cargo extends Bateau {
@@ -182,17 +199,22 @@ public class Main {
     }
     public static void main(String[] args) {
 
-        Catamaran catamaran = new Catamaran(17,8,20,2,15,50,'B',"",14,5000,800,5);
+        Catamaran catamaran = new Catamaran(17,8,20,2,15,50,'B',"",10,5000,800,7);
         Catamaran.afficheCaracteristiquesBateau(catamaran);
 
-        Plaisance plaisance = new Plaisance(5,3,3,2,20,8,'D',"",12,1400,400,2);
+        Plaisance plaisance = new Plaisance(5,3,3,2,20,8,'D',"",12,1400,400,5);
         Plaisance.afficheCaracteristiquesBateau(plaisance);
 
-        Cargo cargo = new Cargo(150,50,60,12,100,8,'C',"Conteneur",6,40000000,15000000,40);
+        Cargo cargo = new Cargo(150,50,20,8,50000,8,'C',"Conteneur",12,40000000,15000000,10);
         Cargo.afficheCaracteristiquesBateau(cargo);
 
+        Tanker tanker = new Tanker(366,52,20,8,96280,24,'C',"liquides en vrac",12,151559,13798,20);
+        Tanker.afficheCaracteristiquesBateau(tanker);
 
-
+        Cargo.afficheBateauPret(cargo);
+        Cargo.chargeEnCoursBateau(cargo);
+        Cargo.trouverNbPassager(cargo);
+        Cargo.afficheCaracteristiquesBateau(cargo);
 
 
 
