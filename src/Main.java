@@ -152,6 +152,12 @@ public class Main {
             return nbPassagers;
         }
 
+        public static void trouverUnEquipage (Bateau unbateau){
+           Random random = new Random();
+           membreEquipage = random.nextInt(31);
+           //return membreEquipage;
+        }
+
 
 
 
@@ -200,21 +206,25 @@ public class Main {
     public static void main(String[] args) {
 
         Catamaran catamaran = new Catamaran(17,8,20,2,15,50,'B',"",10,5000,800,7);
-        Catamaran.afficheCaracteristiquesBateau(catamaran);
+        //Catamaran.afficheCaracteristiquesBateau(catamaran);
 
         Plaisance plaisance = new Plaisance(5,3,3,2,20,8,'D',"",12,1400,400,5);
-        Plaisance.afficheCaracteristiquesBateau(plaisance);
+        //Plaisance.afficheCaracteristiquesBateau(plaisance);
 
         Cargo cargo = new Cargo(150,50,20,8,50000,8,'C',"Conteneur",12,40000000,15000000,10);
-        Cargo.afficheCaracteristiquesBateau(cargo);
+        //Cargo.afficheCaracteristiquesBateau(cargo);
 
         Tanker tanker = new Tanker(366,52,20,8,96280,24,'C',"liquides en vrac",12,151559,13798,20);
-        Tanker.afficheCaracteristiquesBateau(tanker);
+        //Tanker.afficheCaracteristiquesBateau(tanker);
 
+        Cargo.afficheCaracteristiquesBateau(cargo);
         Cargo.afficheBateauPret(cargo);
         Cargo.chargeEnCoursBateau(cargo);
         Cargo.trouverNbPassager(cargo);
+        Cargo.trouverUnEquipage(cargo);
         Cargo.afficheCaracteristiquesBateau(cargo);
+
+
 
 
 
