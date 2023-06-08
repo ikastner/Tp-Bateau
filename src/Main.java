@@ -1,10 +1,17 @@
 //package Tp-Bateau;
-import java.lang. *;
+import java.lang.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Random;
 import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.awt.EventQueue;
 
+import java.sql.Wrapper;
 public class Main {
-    static class Bateau {
+
+   static class Bateau {
         // Définition des attributs d'un bateau
         private static int longueur;
         private static int largeur;
@@ -385,6 +392,54 @@ public class Main {
                 Tanker.traiterTanker(tanker);
                 Tanker.traiterEquipageTanker(tanker);
                 Tanker.afficheCaracteristiquesBateau(tanker);
+                
+                public void enregistrer(Tanker tanker){
+                Connection conn = null;
+                PreparedStatement stmt = null;
+                    try {
+                        // Établir la connexion à la base de données
+                        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bateaux", "root", "root");
+
+                        // Préparer la requête d'insertion
+                        String sql = "INSERT INTO tanker (nom, longueur, largeur, tirant_eau, vitesse_max, tonnage, nombre_equipage, classe, type_cargo, niveau_cargo, capacite_cargo, voyage_en_cours, voyage_termine) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                        stmt = conn.prepareStatement(sql);
+
+                        // Remplir les paramètres de la requête avec les informations du tanker
+                        stmt.setString(1, tanker.nom;
+                        stmt.setDouble(2, tanker.longueur);
+                        stmt.setDouble(3, tanker.largeur);
+                        stmt.setDouble(4, tanker.tirantEau);
+                        stmt.setDouble(5, tanker.vitesseMax);
+                        stmt.setDouble(6, tanker.tonnage);
+                        stmt.setInt(7, tanker.nombreEquipage);
+                        stmt.setString(8, Character.toString(tanker.classe));
+                        stmt.setString(9, tanker.typeCargo);
+                        stmt.setDouble(10, tanker.niveauCargo);
+                        stmt.setDouble(11, tanker.capaciteCargo);
+                        stmt.setBoolean(12, tanker.voyageEnCours);
+                        stmt.setBoolean(13, tanker.voyageTermine);
+
+                        // Exécuter la requête
+                        stmt.executeUpdate();
+
+                    } 
+                    catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    } 
+                    finally {
+                        // Fermer les ressources
+                        try {
+                            if (stmt != null) {
+                                stmt.close();
+                            }
+                        } catch (SQLException e) {
+                            System.out.println(" Erreur");
+                        }
+
+                    }
+                    }
+                
+
                 break;
 
                 case "plaisance":
@@ -411,9 +466,13 @@ public class Main {
                 default:
                 System.out.println("Nous ne possédons pas le bateau que vous voulez dans le magasin");
 
-                // System.out.println("Hello world!");
+
+
+
+                            // System.out.println("Hello world!");
         }
     }
 }
+
 
 
